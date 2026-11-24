@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>媽媽生日快樂！🎂 Happy Birthday</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 背景音樂播放器 -->
+  <audio id="bgmAudio" src="music/Raise Your Glass (To Another Year) - Ziggy.mp3" loop preload="auto"></audio>
+
+
+  <!-- 右上角音樂開關 -->
+  <button id="musicToggle" class="music-btn" onclick="toggleMute()" title="切換靜音">🎵</button>
+
+  <!-- 滿屏氣球與拉炮彩帶畫布 -->
+  <canvas id="celebrationCanvas"></canvas>
+
+  <!-- ================= 第一幕：前言封面頁 ================= -->
+  <section id="introSection" class="section active">
+    <div class="intro-card">
+      <div class="intro-tag">Happy Birthday to Mom 💐</div>
+      <h1>媽媽，生日快樂 🎂</h1>
+      <div class="intro-text">
+        <p>今天是屬於妳的特別日子！</p>
+        <p>平時總是忙著照顧我們、為家裡付出，很多感謝的話平常比較少說出口，所以今天做了一張專屬小卡片送給妳。</p>
+        <p>記得把手機聲音打開，跟著畫面一起點點看喔！</p>
+      </div>
+      <button class="btn-primary" onclick="enterGallery()">打開給媽媽的小驚喜 ✨</button>
+    </div>
+  </section>
+
+  <!-- ================= 第二幕：橫向麻繩拍立得回憶牆 ================= -->
+  <section id="gallerySection" class="section">
+    <header class="header">
+      <h1>我們的幸福回憶牆 🎞️</h1>
+      <p>左右滑動看看這些珍貴的瞬間 點照片可以放大 👇</p>
+    </header>
+
+    <div class="rope-scroll-container" id="ropeContainer">
+      <div class="rope-track">
+        <div class="twine-rope"></div>
+
+        <!-- 照片 1（紙膠帶標籤可自由改成地點、年份或主題） -->
+        <div class="polaroid-hang" 
+             data-year="Memory 01" 
+             data-story="很喜歡這張照片裡你的笑容！希望你每天都能像這天一樣笑得這麼開心、沒有煩惱。"
+             onclick="openPhotoModal(this)">
+          <div class="wooden-clip"></div>
+          <div class="washi-tape tape-pink">20120411</div>
+          <div class="polaroid-card">
+            <img src="images/20120411.jpg" alt="20120411">
+            <p class="caption">最喜歡看你笑的樣子</p>
+          </div>
+        </div>
+
+        <!-- 照片 2 -->
+        <div class="polaroid-hang" 
+             data-year="Memory 02" 
+             data-story="第一次全家一起出國，所有東西都好新奇！"
+             onclick="openPhotoModal(this)">
+          <div class="wooden-clip"></div>
+          <div class="washi-tape tape-yellow">20130815</div>
+          <div class="polaroid-card">
+            <img src="images/20130815.jpg" alt="20130815">
+            <p class="caption">第一次全家一起出國</p>
+          </div>
+        </div>
+
+        <!-- 照片 3 -->
+        <div class="polaroid-hang" 
+             data-year="Memory 03" 
+             data-story="謝謝妳總是帶我們遊山玩水"
+             onclick="openPhotoModal(this)">
+          <div class="wooden-clip"></div>
+          <div class="washi-tape tape-blue">20140601</div>
+          <div class="polaroid-card">
+            <img src="images/20140601.jpg" alt="20140601">
+            <p class="caption">一起出去玩</p>
+          </div>
+        </div>
+
+        <!-- 照片 4 -->
+        <div class="polaroid-hang" 
+             data-year="Memory 04" 
+             data-story="這天的陽光很明媚，跟你的笑容一樣漂亮！"
+             onclick="openPhotoModal(this)">
+          <div class="wooden-clip"></div>
+          <div class="washi-tape tape-green">20150103</div>
+          <div class="polaroid-card">
+            <img src="images/20150103.avif" alt="20150103">
+            <p class="caption">笑一個！</p>
+          </div>
+        </div>
+
+        <!-- 照片 5 -->
+        <div class="polaroid-hang" 
+             data-year="Memory 05" 
+             data-story="一起旅行留下的珍貴紀錄，以後還要帶你去更多好玩的地方、看更多風景！"
+             onclick="openPhotoModal(this)">
+          <div class="wooden-clip"></div>
+          <div class="washi-tape tape-pink">20160724</div>
+          <div class="polaroid-card">
+            <img src="images/20160724.png" alt="20160724">
+            <p class="caption">第二次去日本！</p>
+          </div>
+        </div>
+
+        <!-- 照片 6 -->
+        <div class="polaroid-hang" 
+             data-year="Memory 06" 
+             data-story="謝謝妳總是支持我們各種興趣與活動並和我們一起參與！"
+             onclick="openPhotoModal(this)">
+          <div class="wooden-clip"></div>
+          <div class="washi-tape tape-yellow">20170401</div>
+          <div class="polaroid-card">
+            <img src="images/20170401.jpg" alt="20170401">
+            <p class="caption">晚間路跑</p>
+          </div>
+        </div>
+
+        <!-- 照片 7 -->
+        <div class="polaroid-hang" 
+             data-year="Memory 07" 
+             data-story="第一次去韓國，原來已經七年了嗎？！"
+             onclick="openPhotoModal(this)">
+          <div class="wooden-clip"></div>
+          <div class="washi-tape tape-green">20190816</div>
+          <div class="polaroid-card">
+            <img src="images/20190816.jpg" alt="20190816">
+            <p class="caption">換個地方玩</p>
+          </div>
+        </div>
+
+                <!-- 照片 8 -->
+        <div class="polaroid-hang" 
+             data-year="Memory 08" 
+             data-story="體驗韓國的夜市，還有討價還價中的妹妹哈哈"
+             onclick="openPhotoModal(this)">
+          <div class="wooden-clip"></div>
+          <div class="washi-tape tape-yellow">20190819</div>
+          <div class="polaroid-card">
+            <img src="images/20190819.jpg" alt="20190819">
+            <p class="caption">逛夜市</p>
+          </div>
+        </div>
+
+                <!-- 照片 9 -->
+        <div class="polaroid-hang" 
+             data-year="Memory 09" 
+             data-story="不知道妳記不記得，這年的生日是在動物園過的！"
+             onclick="openPhotoModal(this)">
+          <div class="wooden-clip"></div>
+          <div class="washi-tape tape-yellow">20191124</div>
+          <div class="polaroid-card">
+            <img src="images/20191124.jpg" alt="20191124">
+            <p class="caption">七年前的生日</p>
+          </div>
+        </div>
+
+        
+                <!-- 照片 10 -->
+        <div class="polaroid-hang" 
+             data-year="Memory 10" 
+             data-story="謝謝妳總是配合我突發奇想的旅程"
+             onclick="openPhotoModal(this)">
+          <div class="wooden-clip"></div>
+          <div class="washi-tape tape-yellow">20200123</div>
+          <div class="polaroid-card">
+            <img src="images/20200123.jpg" alt="20200123">
+            <p class="caption">月世界</p>
+          </div>
+        </div>
+
+        
+                <!-- 照片 11 -->
+        <div class="polaroid-hang" 
+             data-year="Memory 11" 
+             data-story="謝謝妳總是帶著我們體驗各種事物"
+             onclick="openPhotoModal(this)">
+          <div class="wooden-clip"></div>
+          <div class="washi-tape tape-yellow">20210219</div>
+          <div class="polaroid-card">
+            <img src="images/20210219.jpg" alt="20210219">
+            <p class="caption">來買年貨</p>
+          </div>
+        </div>
+
+        
+                <!-- 照片 12 -->
+        <div class="polaroid-hang" 
+             data-year="Memory 12" 
+             data-story="希望大家永遠健康平安！"
+             onclick="openPhotoModal(this)">
+          <div class="wooden-clip"></div>
+          <div class="washi-tape tape-yellow">20220201</div>
+          <div class="polaroid-card">
+            <img src="images/20220201.avif" alt="20220201">
+            <p class="caption">佛光山</p>
+          </div>
+        </div>
+
+        
+                <!-- 照片 13 -->
+        <div class="polaroid-hang" 
+             data-year="Memory 13" 
+             data-story="101的雞蛋糕很好吃！"
+             onclick="openPhotoModal(this)">
+          <div class="wooden-clip"></div>
+          <div class="washi-tape tape-yellow">20220823</div>
+          <div class="polaroid-card">
+            <img src="images/20220823.avif" alt="20220823">
+            <p class="caption">101</p>
+          </div>
+        </div>
+
+        
+                <!-- 照片 14 -->
+        <div class="polaroid-hang" 
+             data-year="Memory 14" 
+             data-story="疫情後第一次出國！雖然大家都中標第二次"
+             onclick="openPhotoModal(this)">
+          <div class="wooden-clip"></div>
+          <div class="washi-tape tape-yellow">20230709</div>
+          <div class="polaroid-card">
+            <img src="images/20230709.avif" alt="20230709">
+            <p class="caption">熊本城</p>
+          </div>
+        </div>
+
+        
+                <!-- 照片 15 -->
+        <div class="polaroid-hang" 
+             data-year="Memory 15" 
+             data-story="謝謝妳帶我們體驗不同季節的日本！"
+             onclick="openPhotoModal(this)">
+          <div class="wooden-clip"></div>
+          <div class="washi-tape tape-yellow">20240125</div>
+          <div class="polaroid-card">
+            <img src="images/20240125.avif" alt="20240125">
+            <p class="caption">冬日日本</p>
+          </div>
+        </div>
+
+        
+                <!-- 照片 16 -->
+        <div class="polaroid-hang" 
+             data-year="Memory 16" 
+             data-story="很特別的體驗"
+             onclick="openPhotoModal(this)">
+          <div class="wooden-clip"></div>
+          <div class="washi-tape tape-yellow">20250815</div>
+          <div class="polaroid-card">
+            <img src="images/20250815.avif" alt="20250815">
+            <p class="caption">天橋立</p>
+          </div>
+        </div>
+
+        
+                <!-- 照片 17 -->
+        <div class="polaroid-hang" 
+             data-year="Memory 17" 
+             data-story="謝謝妳讓我體驗到不同國家的風情"
+             onclick="openPhotoModal(this)">
+          <div class="wooden-clip"></div>
+          <div class="washi-tape tape-yellow">20260720</div>
+          <div class="polaroid-card">
+            <img src="images/20260720.jpg" alt="20260720">
+            <p class="caption">新馬遊</p>
+          </div>
+        </div>
+
+
+                <!-- 照片 18 -->
+        <div class="polaroid-hang" 
+             data-year="Memory 18" 
+             data-story="謝謝妳讓我們的生活有許多不一樣的色彩"
+             onclick="openPhotoModal(this)">
+          <div class="wooden-clip"></div>
+          <div class="washi-tape tape-yellow">20260724</div>
+          <div class="polaroid-card">
+            <img src="images/20260724.jpg" alt="20260724">
+            <p class="caption">樟宜機場</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="next-step">
+      <button class="btn-primary" onclick="goToCake()">看完照片了 來吃生日蛋糕吧 🕯️</button>
+    </div>
+  </section>
+
+  <!-- 照片放大視窗 -->
+  <div id="photoModal" class="modal" onclick="closePhotoModal()">
+    <div class="modal-polaroid" onclick="event.stopPropagation()">
+      <span class="modal-year-tag" id="modalYear"></span>
+      <img id="modalImg" src="" alt="放大照片">
+      <h4 id="modalTitle"></h4>
+      <p id="modalStory" class="modal-story-text"></p>
+      <button class="btn-close" onclick="closePhotoModal()">收起照片</button>
+    </div>
+  </div>
+
+  <!-- ================= 第三幕：暗夜燭光生日蛋糕 ================= -->
+  <section id="cakeSection" class="section dark-room">
+    <h2 class="cake-title" id="cakeTitle">閉上眼睛許個願望吧 ✨</h2>
+    <p class="cake-hint" id="cakeHint">許完願後 吹熄蠟燭 🕯️</p>
+
+    <div class="cake-stage" onclick="blowCandle()">
+      <div class="candle-glow" id="candleGlow"></div>
+      <div class="candle">
+        <div class="flame" id="flame"></div>
+        <div class="smoke" id="smoke"></div>
+        <div class="wick"></div>
+      </div>
+      <div class="cake-top"><div class="icing-drip"></div></div>
+      <div class="cake-bottom"><div class="icing-drip-bottom"></div></div>
+      <div class="cake-plate"></div>
+    </div>
+
+    <button class="btn-primary btn-glow" id="toGiftBtn" style="display: none;" onclick="goToGift()">
+      生日快樂！來拆禮物吧！ 🎁
+    </button>
+  </section>
+
+  <!-- ================= 第四幕：45度斜上方立體禮物盒 ================= -->
+  <section id="giftSection" class="section">
+    <h2 class="gift-title" id="giftTitle">最後，有一個小禮物要送給妳...</h2>
+    <p class="gift-hint" id="giftHint">拆開蝴蝶結看看裡面有什麼驚喜！🎀</p>
+
+    <div class="iso-stage" id="giftBox" onclick="openGift()">
+      <div class="iso-box">
+        <div class="iso-bottom">
+          <div class="card-artifact" id="cardArtifact" onclick="openLetter(event)">
+            <div class="card-flap"></div>
+            <div class="card-seal">♥</div>
+            <span class="card-label">For Mom</span>
+          </div>
+        </div>
+
+        <div class="box-wall wall-front"><div class="wall-ribbon"></div></div>
+        <div class="box-wall wall-back"></div>
+        <div class="box-wall wall-left"></div>
+        <div class="box-wall wall-right"><div class="wall-ribbon"></div></div>
+
+        <div class="iso-lid">
+          <div class="lid-top">
+            <div class="lid-ribbon-h"></div>
+            <div class="lid-ribbon-v"></div>
+
+            <div class="bow-3d">
+              <div class="bow-tail tail-left"></div>
+              <div class="bow-tail tail-right"></div>
+              <div class="bow-arch arch-left"></div>
+              <div class="bow-arch arch-right"></div>
+              <div class="bow-arch arch-back-left"></div>
+              <div class="bow-arch arch-back-right"></div>
+              <div class="bow-center-knot"></div>
+            </div>
+          </div>
+          <div class="lid-rim rim-front"><div class="rim-ribbon"></div></div>
+          <div class="lid-rim rim-right"><div class="rim-ribbon"></div></div>
+          <div class="lid-rim rim-left"></div>
+          <div class="lid-rim rim-back"></div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-back" onclick="backToGallery()">← 回到照片牆</button>
+  </section>
+
+  <!-- ================= 賀卡全文彈窗 ================= -->
+  <div id="letterModal" class="modal">
+    <div class="letter-paper">
+      <div class="letter-header">
+        <span>🎂 Happy Birthday to Mom!</span>
+        <button class="close-x" onclick="closeLetter()">✕</button>
+      </div>
+      <div class="letter-content">
+        <h3>親愛的媽媽：</h3>
+        <p>
+          生日快樂！！🎉<br><br>
+          謝謝你一直以來這麼辛苦地照顧我，也感謝妳總是帶我們出國，讓我有比一般人多看看這個世界的機會，
+          雖然我常常跟妳意見不合、吵架，但感謝妳願意尊重我的想法，聽聽我的意見，
+          更願意在吵架後跟我一起討論有什麼更好的解方，希望在未來我們能夠停下來好好說話以避免誤解及誤會，
+          也希望妳不要太勞累，一定要身體健康、每天都開開心心、越來越漂亮！我永遠愛你 ❤️
+        </p>
+        <p class="letter-sign">愛妳的女兒 敬上 ✨</p>
+      </div>
+      <div style="text-align: center; margin-top: 24px;">
+        <button class="btn-primary" onclick="goToEnding()">收好卡片，前往結尾 ✨</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 第五幕：專屬結束頁面 ================= -->
+  <section id="endingSection" class="section">
+    <div class="ending-card">
+      <div class="ending-icon">💐🎂✨</div>
+      <h2>媽媽，生日快樂！</h2>
+      <p class="ending-msg">
+        願妳每天都被幸福包圍<br>
+        平安健康、天天開心、心想事成！
+      </p>
+      <div class="ending-footer">Made with ❤️ just for Mom</div>
+      <div class="ending-actions">
+        <button class="btn-secondary" onclick="openLetter(event)">再看一次賀卡 💌</button>
+        <button class="btn-primary" onclick="restartAll()">從頭重溫一次 🔄</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
